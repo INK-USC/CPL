@@ -2,6 +2,37 @@
 
 This is the code for paper "Collaborative Policy Learning for Open Knowledge Graph Reasoning".
 
+## Our Idea
+
+- Task
+  - Given query ![](http://latex.codecogs.com/gif.latex?(e_1, r))
+  - predict a certain length $t$ path on the graph ![](http://latex.codecogs.com/gif.latex?(e_1, r_{12}, e_2, r_{23}, ..., e_{t}, r_{t(t+1)},e_{t+1}))
+  - make sure that ![](http://latex.codecogs.com/gif.latex?(e_1, r, e_{t+1})) is a fact in the knowledge base
+
+- Graph: Use Go For A Walk to predict the path
+
+- Text: Use text information to find ***inexistent*** edges, further help predict paths on the graph
+
+  - ***Methods:*** Use certain sentence embedding method to model the text sentence into a embedding, after that we use an agent called ***Sentence Relation Selector*** to help us select a most relevant sentence at time step t, then split the sentence embedding into three parts: ![](http://latex.codecogs.com/gif.latex?{v_{e_t},v_{e_{t+1}}, r_{Sentence}})
+
+  - Example and motivation:
+
+    - ![image-20181020120019098](https://github.com/shanzhenren/GraphPath/blob/master/README.assets/image-20181020120019098.png) 
+
+    - When given a query *(Melinda, live in, ?)*, if we only got the graph information, we may find the path *(Melinda --- friend --- Jane Doe --- born --- Seattle)*, which is not correct. 
+
+    - With the text information, we may choose a path like *(Melinda --- wife --- Bill Gates --- chair --- Microsoft --- headquarter in --- Seattle)*. In time step 1, the fact *(Melinda, wife, Bill Gates)* comes from the sentence 
+
+      >  *William H. Gates, and his wife Melinda gave $3.3B to their two foundation*.
+
+- Graph+Texts
+
+![image-20181020190951048](https://github.com/shanzhenren/GraphPath/blob/master/README.assets/image-20181020190951048.png)
+
+- Take-away message:
+  - Use text information to add potential useful ***inexistent*** edges
+  - Also use RL to give rewards to ***Sentence Relation Selector***.
+
 ## Running
 
 You can use the following command to run this code:
@@ -70,11 +101,11 @@ Results will be saved to a folder named "experiments" as a subdirectory. Another
 
 ## Datasets
 
-We offer two datasets: FB15K-NYT10 and UMLS-PubMed. Download it here: 
+We offer two datasets: FB15K-NYT10 and UMLS-PubMed. Download it here, with some data dealing toolkits: 
 
 https://drive.google.com/file/d/1hCyPBjywpMuShRJCPKRjc7n2vHpxfetg/view?usp=sharing
 
-if you want to create your own dataset, it should like this:
+if you want to create your own dataset, it should look like this:
 
 the knowledge graph dataset should look like ones for [MINERVA](https://github.com/shehzaadzd/MINERVA). take a look: [Here](https://github.com/shehzaadzd/MINERVA/tree/master/datasets/data_preprocessed/FB15K-237)
 
@@ -104,6 +135,6 @@ the corpus should look like ones for [OpenNRE](https://github.com/thunlp/OpenNRE
 
 /joint_trainer.py: main running code. loads both models and runs sessions.
 
-/bfs_example.cpp: a BFS widget for searching paths across the knowledge graph.
+/pure_gfaw.py: a code without pcnn interference, as a baseline against our model.
 
 ## Cite this paper
