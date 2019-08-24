@@ -5,9 +5,9 @@ This is the code for paper "Collaborative Policy Learning for Open Knowledge Gra
 ## Our Idea
 
 - Task
-  - Given query ![](http://latex.codecogs.com/gif.latex?(e_1, r))
-  - predict a certain length $t$ path on the graph ![](http://latex.codecogs.com/gif.latex?(e_1, r_{12}, e_2, r_{23}, ..., e_{t}, r_{t(t+1)},e_{t+1}))
-  - make sure that ![](http://latex.codecogs.com/gif.latex?(e_1, r, e_{t+1})) is a fact in the knowledge base
+  - Given query (e_1, r)
+  - predict a certain length $t$ path on the graph (e_1, r_{12}, e_2, r_{23}, ..., e_{t}, r_{t(t+1)},e_{t+1})
+  - make sure that (e_1, r, e_{t+1}) is a fact in the knowledge base
 
 - Graph: Use Go For A Walk to predict the path
 
@@ -138,3 +138,5 @@ the corpus should look like ones for [OpenNRE](https://github.com/thunlp/OpenNRE
 /pure_gfaw.py: a code without pcnn interference, as a baseline against our model.
 
 ## Cite this paper
+
+
