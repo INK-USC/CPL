@@ -17,13 +17,7 @@ This is the code for paper "Collaborative Policy Learning for Open Knowledge Gra
 
   - Example and motivation:
 
-    - ![image-20181020120019098](https://github.com/shanzhenren/GraphPath/blob/master/README.assets/image-20181020120019098.png) 
-
-    - When given a query *(Melinda, live in, ?)*, if we only got the graph information, we may find the path *(Melinda --- friend --- Jane Doe --- born --- Seattle)*, which is not correct. 
-
-    - With the text information, we may choose a path like *(Melinda --- wife --- Bill Gates --- chair --- Microsoft --- headquarter in --- Seattle)*. In time step 1, the fact *(Melinda, wife, Bill Gates)* comes from the sentence 
-
-      >  *William H. Gates, and his wife Melinda gave $3.3B to their two foundation*.
+   ![Moltivation-gif](https://github.com/shanzhenren/CPL/blob/master/emnlp-gif.gif?raw=true)
 
 - Graph+Texts
 
