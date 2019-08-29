@@ -1,0 +1,8 @@
+pytest
+numpy
+h5py
+nltk
+enum34
+spacy
+sklearn
+future

@@ -1,0 +1,7 @@
+README.md
+bashmagic/__init__.py
+bashmagic/core.py
+bashmagic.egg-info/PKG-INFO
+bashmagic.egg-info/SOURCES.txt
+bashmagic.egg-info/dependency_links.txt
+bashmagic.egg-info/top_level.txt

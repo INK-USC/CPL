@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: bashmagic
+Version: 0.0.1
+Summary: Some bash hacks.
+Home-page: http://packages.python.org/bashmagic
+Author: Tim Dettmers
+Author-email: tim.dettmers@gmail.com
+License: GNU
+Description: # bashmagic
+Keywords: bash
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Alpha
+Classifier: Topic :: Bash

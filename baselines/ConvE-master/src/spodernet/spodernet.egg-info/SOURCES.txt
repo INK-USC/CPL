@@ -1,0 +1,10 @@
+README.md
+spodernet/__init__.py
+spodernet/frontend.py
+spodernet/hooks.py
+spodernet/interfaces.py
+spodernet.egg-info/PKG-INFO
+spodernet.egg-info/SOURCES.txt
+spodernet.egg-info/dependency_links.txt
+spodernet.egg-info/requires.txt
+spodernet.egg-info/top_level.txt

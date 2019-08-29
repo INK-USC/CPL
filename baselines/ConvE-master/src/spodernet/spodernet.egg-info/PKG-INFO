@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: spodernet
+Version: 0.0.1
+Summary: Preprocessing framework for NLP.
+Home-page: http://packages.python.org/spodernet
+Author: Tim Dettmers
+Author-email: tim.dettmers@gmail.com
+License: MIT
+Description: # spodernet
+        NLP
+        
+Keywords: deep learning NLP
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Alpha
+Classifier: Topic :: Deep Learning

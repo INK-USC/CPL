@@ -1,0 +1,4 @@
+for i in 0.1 0.001 0.0001;
+do
+    bash run.sh 500 10000 $i
+done
