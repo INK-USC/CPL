@@ -133,4 +133,23 @@ the corpus should look like ones for [OpenNRE](https://github.com/thunlp/OpenNRE
 
 ## Cite this paper
 
+```Bibtex
+@ARTICLE{2019arXiv190900230F,
+       author = {{Fu}, Cong and {Chen}, Tong and {Qu}, Meng and {Jin}, Woojeong and
+         {Ren}, Xiang},
+        title = "{Collaborative Policy Learning for Open Knowledge Graph Reasoning}",
+      journal = {arXiv e-prints},
+     keywords = {Computer Science - Artificial Intelligence, Computer Science - Machine Learning},
+         year = "2019",
+        month = "Aug",
+          eid = {arXiv:1909.00230},
+        pages = {arXiv:1909.00230},
+archivePrefix = {arXiv},
+       eprint = {1909.00230},
+ primaryClass = {cs.AI},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019arXiv190900230F},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
 
+
+```
