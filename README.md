@@ -1,39 +1,67 @@
 # CPL: Collaborative Policy Learning
 
-This is the code for paper "Collaborative Policy Learning for Open Knowledge Graph Reasoning".
+This is the code for paper ***[Collaborative Policy Learning for Open Knowledge Graph Reasoning](https://arxiv.org/abs/1909.00230)***.
 
-## Our Idea
+Table of Contents
+=================
+<!--ts-->
+* [Introduction](#introduction)
+     * [Background:OKGR](#background)
+     * [Structure](#structure)
+* [Building and Running](#building-and-running)
+     * [Prerequisites](#prerequisites)
+     * [Running](#running)
+     * [Parameters](#parameters)
+     * [Baselines](#baselines)
+* [Performance](#performance)
+     * [Datasets](#datasets)
+     * [Results](#results)
+* [TODO](#todo)
+* [Citation](#citation)
+<!--te-->
 
-- Task
-  - Given query (e_1, r)
-  - predict a certain length $t$ path on the graph (e_1, r_{12}, e_2, r_{23}, ..., e_{t}, r_{t(t+1)},e_{t+1})
-  - make sure that (e_1, r, e_{t+1}) is a fact in the knowledge base
+## Introduction
 
-- Graph: Use Go For A Walk to predict the path
+### Background
 
-- Text: Use text information to find ***inexistent*** edges, further help predict paths on the graph
+In this paper, we study the new task of Open Knowledge Graph Reasoning (OKGR), where the new facts extracted from the text corpora will be used to augment the graph dynamically while performing reasoning.
+All the recent joint graph and text embedding methods focus on learning better knowledge graph embeddings for reasoning, but we consider adding more facts to the graph from the text to improve the reasoning performance and further provide interpretability. 
 
-  - ***Methods:*** Use certain sentence embedding method to model the text sentence into a embedding, after that we use an agent called ***Sentence Relation Selector*** to help us select a most relevant sentence at time step t, then split the sentence embedding into three parts: ![](http://latex.codecogs.com/gif.latex?{v_{e_t},v_{e_{t+1}}, r_{Sentence}})
+ However, most facts so extracted may be noisy or irrelevant to the path inference process. Moreover, adding a large number of edges to the graph will create an ineffective search space and cause scalability issues to the path finding models. So we need to dynamically add edges as we walk through the graph.
+![Moltivation-gif](https://github.com/shanzhenren/CPL/blob/master/emnlp-gif.gif?raw=true)
 
-  - Example and motivation:
-
-   ![Moltivation-gif](https://github.com/shanzhenren/CPL/blob/master/emnlp-gif.gif?raw=true)
-
-- Graph+Texts
+### Structure
 
 ![image-20181020190951048](https://github.com/shanzhenren/GraphPath/blob/master/README.assets/image-20181020190951048.png)
 
-- Take-away message:
-  - Use text information to add potential useful ***inexistent*** edges
-  - Also use RL to give rewards to ***Sentence Relation Selector***.
+To address the above challenges for OKGR, we propose our **Collaborative Policy Learning** (CPL) framework to jointly train two RL agents in a mutually enhancing manner. 
+In CPL, besides training a **reasoning** agent for inference path finding, we further introduce a **fact extracting** agent, which learns the policy to select relevant facts extracted from the corpus, based on the context of the reasoning process and the corpus.
 
-## Running
+- Take-away message:
+  - We use the text corpus information accompanied with the KG to extract and add potential useful ***currently nonexistent*** edges
+  - By examining the result of the new edges on KG, we give rewards to our ***Fact Extractor***.
+
+## Building and Running
+
+To validate our ideas we offer this implementation where PCNN acts as the fact extractor, and MINERVA as the reasoner. You can implement your trials with other models in a similar fashion.
+
+### Prerequisites
+
+To properly run this code, following packages of Python 3 with the newest available version should be prepared:
+
+```text
+    tqdm (for progress display)
+    tensorflow
+    numpy,scipy,scikit-learn
+```
+
+### Running
 
 You can use the following command to run this code:
 
-```
+```bash
 CUDA_VISIBLE_DEVICES=0,1 python3 joint_trainer.py \
-            --total_iterations=400 \
+            --total_iterations=500 \
             --use_replay_memory=1 \
             --train_pcnn=1 \
             --bfs_iteration=200 \
@@ -53,8 +81,12 @@ CUDA_VISIBLE_DEVICES=0,1 python3 joint_trainer.py \
             --model_load_dir="experiments/FB60K+NYT10/kg/3_100_100_0.01_83_True_200_400_02130056/model"
 
 ```
+This offers you the parameters that can yield the best results while not consuming too much time; it designates two GPUs to separately store the two agents.
 
-usable configurations:
+Firstly, the MINERVA model is trained for the number of iterations designated by **--total_iterations**; then the pcnn model is trained by a default of 200 iterations; 
+finally the two agents are trained together for another **--total_iterations** iterations, in which the first **--bfs_iteration** iterations is trained using BFS aid.
+
+### Parameters
 
     total_iteations: total iterations for the model to run
 
@@ -68,15 +100,15 @@ usable configurations:
 
     pcnn_dataset_base: base folder containing all relation extraction corpuses
 
-    pcnn_dataset_name: which to use
+    pcnn_dataset_name: which corpus dataset to use
 
     base_output_dir: what directory to save output to
 
     gfaw_dataset_base: base folder containing all KG data
 
-    gfaw_dataset: which to use 
+    gfaw_dataset: which KG dataset to use 
 
-    load_model: whether to load a previously trained model (MINERVA) first
+    load_model: whether to load a previously trained model (MINERVA) first; if there isn't any choose false/0
 
     load_pcnn_model: whether to load a previously trained PCNN model first
 
@@ -93,7 +125,9 @@ You can find results in the experiments folder's scores.txt, under each model la
 
 Results will be saved to a folder named "experiments" as a subdirectory. Another folder "_preprocessed_data" will save the preprocessed datasets for quicker code running. 
 
-## Datasets
+## Performance
+
+### Datasets
 
 We offer two datasets: FB15K-NYT10 and UMLS-PubMed. Download it here, with some data dealing toolkits: 
 
@@ -117,6 +151,32 @@ the corpus should look like ones for [OpenNRE](https://github.com/thunlp/OpenNRE
 ]
 ```
 
+### Baselines
+
+baselines are offered in a subfolder. Due to the size of the datasets, you may have to preprocess the datasets in the manner these baselines require them. 
+
+Toolkits, as mentioned before, are offered in the dataset zip file.
+
+MINERVA : included as a part of the model.
+
+[ConvE](https://github.com/INK-USC/CPL/blob/master/baselines/ConvE-master/) : SOTA KG embedding-based reasoning method.
+
+[OpenKE](https://github.com/INK-USC/CPL/tree/master/baselines/OpenKE-master) : Classical embedding baselines prior to 2014. Implemented by THU NLP group.
+Includes TransE, DistMult and ComplEx.
+
+[JointNRE](https://github.com/INK-USC/CPL/tree/master/baselines/JointNRE-master) : A model that conducts relation extraction with the aid of KGs. 
+We consulted the author and acquired a release that saves the trained embedding and uses OpenKE-TransE to conduct the testing task.
+
+[MultiHop](https://github.com/INK-USC/CPL/tree/master/baselines/MultiHopKG-master) : SOTA path-based reasoning method. This model uses PyTorch.
+
+[TransE + LINE](https://github.com/INK-USC/CPL/tree/master/baselines/triple%2Btext) : An implementation of the same idea by one of our authors. 
+It uses LINE for relation extraction, and TransE for KG embedding.
+
+
+### Results
+
+
+
 ## File Structure
 
 /nrekit: the Relation Extraction Agent kit.
@@ -133,23 +193,12 @@ the corpus should look like ones for [OpenNRE](https://github.com/thunlp/OpenNRE
 
 ## Cite this paper
 
-```Bibtex
-@ARTICLE{2019arXiv190900230F,
-       author = {{Fu}, Cong and {Chen}, Tong and {Qu}, Meng and {Jin}, Woojeong and
-         {Ren}, Xiang},
-        title = "{Collaborative Policy Learning for Open Knowledge Graph Reasoning}",
-      journal = {arXiv e-prints},
-     keywords = {Computer Science - Artificial Intelligence, Computer Science - Machine Learning},
-         year = "2019",
-        month = "Aug",
-          eid = {arXiv:1909.00230},
-        pages = {arXiv:1909.00230},
-archivePrefix = {arXiv},
-       eprint = {1909.00230},
- primaryClass = {cs.AI},
-       adsurl = {https://ui.adsabs.harvard.edu/abs/2019arXiv190900230F},
-      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+``Bibtex
+@article{fu2019collaborative,
+  title={Collaborative Policy Learning for Open Knowledge Graph Reasoning},
+  author={Fu, Cong and Chen, Tong and Qu, Meng and Jin, Woojeong and Ren, Xiang},
+  journal={arXiv preprint arXiv:1909.00230},
+  year={2019}
 }
-
-
 ```
+
