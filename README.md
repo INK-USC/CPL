@@ -183,7 +183,7 @@ It uses LINE for relation extraction, and TransE for KG embedding.
 
 We conducted tests on different levels of fractions of the original knowledge graphs. The results corresponding to the scope of part of knowledge graphs for different models are as follows:
 
-![Fact-Select](https://github.com/INK-USC/CPL/blob/master/fact-select.pdf)
+![Fact-Select](https://github.com/INK-USC/CPL/blob/master/fact-select.png)
 
 ## File Structure
 
