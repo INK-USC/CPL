@@ -193,7 +193,7 @@ It uses LINE for relation extraction, and TransE for KG embedding.
 
 ## Cite this paper
 
-``Bibtex
+```Bibtex
 @article{fu2019collaborative,
   title={Collaborative Policy Learning for Open Knowledge Graph Reasoning},
   author={Fu, Cong and Chen, Tong and Qu, Meng and Jin, Woojeong and Ren, Xiang},
