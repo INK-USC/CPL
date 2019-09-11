@@ -159,6 +159,8 @@ Toolkits, as mentioned before, are offered in the dataset zip file.
 
 MINERVA : included as a part of the model.
 
+Two-Step : Use PCNN to extract relations on a given corpus dataset beforehand, add them to the knowledge graph's training set by a confidence threshold, and train MINERVA.
+
 [ConvE](https://github.com/INK-USC/CPL/blob/master/baselines/ConvE-master/) : SOTA KG embedding-based reasoning method.
 
 [OpenKE](https://github.com/INK-USC/CPL/tree/master/baselines/OpenKE-master) : Classical embedding baselines prior to 2014. Implemented by THU NLP group.
@@ -175,7 +177,13 @@ It uses LINE for relation extraction, and TransE for KG embedding.
 
 ### Results
 
+![Results1](https://github.com/INK-USC/CPL/blob/master/U%2BP%20results.png)
 
+![Results2](https://github.com/INK-USC/CPL/blob/master/F%2BN%20results.png)
+
+We conducted tests on different levels of fractions of the original knowledge graphs. The results corresponding to the scope of part of knowledge graphs for different models are as follows:
+
+![Fact-Select](https://github.com/INK-USC/CPL/blob/master/fact-select.pdf)
 
 ## File Structure
 
