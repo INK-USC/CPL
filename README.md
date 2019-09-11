@@ -16,6 +16,7 @@ Table of Contents
 * [Performance](#performance)
      * [Datasets](#datasets)
      * [Results](#results)
+* [File Structure](#file-structure)
 * [TODO](#todo)
 * [Citation](#citation)
 <!--te-->
@@ -198,6 +199,14 @@ We conducted tests on different levels of fractions of the original knowledge gr
 /joint_trainer.py: main running code. loads both models and runs sessions.
 
 /pure_gfaw.py: a code without pcnn interference, as a baseline against our model.
+
+## TODO
+
+- [ ] Unify baseline input and output to current MINERVA style
+- [ ] Improve stability of BFS process, make it work on any dataset
+- [ ] Improve code style, add comments to code files and data dealers
+- [ ] Migrate to PyTorch
+
 
 ## Cite this paper
 
