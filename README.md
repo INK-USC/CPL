@@ -1,6 +1,6 @@
 # CPL: Collaborative Policy Learning
 
-This is the code for paper ***[Collaborative Policy Learning for Open Knowledge Graph Reasoning](https://arxiv.org/abs/1909.00230)***.
+This is the code for EMNLP 2019 paper ***[Collaborative Policy Learning for Open Knowledge Graph Reasoning](https://arxiv.org/abs/1909.00230)***.
 
 Table of Contents
 =================
