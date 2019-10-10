@@ -30,6 +30,7 @@ We study the new task of Open Knowledge Graph Reasoning (OKGR), where the new fa
 All the recent joint graph and text embedding methods focus on learning better knowledge graph embeddings for reasoning, but we consider adding more facts to the graph from the text to improve the reasoning performance and further provide interpretability. 
 
  However, most facts so extracted may be noisy or irrelevant to the path inference process. Moreover, adding a large number of edges to the graph will create an ineffective search space and cause scalability issues to the path finding models. So we need to dynamically add edges as we walk through the graph.
+ 
 ![Moltivation-gif](https://github.com/shanzhenren/CPL/blob/master/emnlp-gif.gif?raw=true)
 
 ### Method Overview
@@ -39,6 +40,17 @@ In CPL, besides training a **reasoning** agent for inference path finding, we fu
 
 ![image-20181020190951048](https://github.com/shanzhenren/GraphPath/blob/master/README.assets/image-20181020190951048.png)
 
+
+## Cite this paper
+
+```Bibtex
+@article{fu2019collaborative,
+  title={Collaborative Policy Learning for Open Knowledge Graph Reasoning},
+  author={Fu, Cong and Chen, Tong and Qu, Meng and Jin, Woojeong and Ren, Xiang},
+  journal={EMNLP},
+  year={2019}
+}
+```
 
 ## Building and Running
 
@@ -205,15 +217,4 @@ We conducted tests on different levels of fractions of the original knowledge gr
 - [ ] Improve code style, add comments to code files and data dealers
 - [ ] Migrate to PyTorch
 
-
-## Cite this paper
-
-```Bibtex
-@article{fu2019collaborative,
-  title={Collaborative Policy Learning for Open Knowledge Graph Reasoning},
-  author={Fu, Cong and Chen, Tong and Qu, Meng and Jin, Woojeong and Ren, Xiang},
-  journal={EMNLP},
-  year={2019}
-}
-```
 
