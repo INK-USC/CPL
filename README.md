@@ -1,13 +1,12 @@
 # CPL: Collaborative Policy Learning
 
-This is the code for EMNLP 2019 paper ***[Collaborative Policy Learning for Open Knowledge Graph Reasoning](https://arxiv.org/abs/1909.00230)***.
+PyTorch implementation of EMNLP 2019 paper ***[Collaborative Policy Learning for Open Knowledge Graph Reasoning](https://arxiv.org/abs/1909.00230)***.
 
 Table of Contents
 =================
 <!--ts-->
 * [Introduction](#introduction)
-     * [Background:OKGR](#background)
-     * [Structure](#structure)
+* [Citation](#citation)
 * [Building and Running](#building-and-running)
      * [Prerequisites](#prerequisites)
      * [Running](#running)
@@ -18,29 +17,28 @@ Table of Contents
      * [Results](#results)
 * [File Structure](#file-structure)
 * [TODO](#todo)
-* [Citation](#citation)
 <!--te-->
+
+### TR;DL
+  - Sparsity issue in knowledge graph reasoning can benefit from dynamically enrich the graph structure based on a background text corpus 
+  - We show that a collaborative policy learning method (path-finding agent & fact extraction agent) can seek most relevant facts to augment search space of path-finding agent and improve the KG reasoning performance.
+  - We release two datasets of general and biomedical domains for this new task.
 
 ## Introduction
 
-### Background
-
-In this paper, we study the new task of Open Knowledge Graph Reasoning (OKGR), where the new facts extracted from the text corpora will be used to augment the graph dynamically while performing reasoning.
+We study the new task of Open Knowledge Graph Reasoning (OKGR), where the new facts extracted from the text corpora will be used to augment the graph dynamically while performing reasoning.
 All the recent joint graph and text embedding methods focus on learning better knowledge graph embeddings for reasoning, but we consider adding more facts to the graph from the text to improve the reasoning performance and further provide interpretability. 
 
  However, most facts so extracted may be noisy or irrelevant to the path inference process. Moreover, adding a large number of edges to the graph will create an ineffective search space and cause scalability issues to the path finding models. So we need to dynamically add edges as we walk through the graph.
 ![Moltivation-gif](https://github.com/shanzhenren/CPL/blob/master/emnlp-gif.gif?raw=true)
 
-### Structure
-
-![image-20181020190951048](https://github.com/shanzhenren/GraphPath/blob/master/README.assets/image-20181020190951048.png)
+### Method Overview
 
 To address the above challenges for OKGR, we propose our **Collaborative Policy Learning** (CPL) framework to jointly train two RL agents in a mutually enhancing manner. 
 In CPL, besides training a **reasoning** agent for inference path finding, we further introduce a **fact extracting** agent, which learns the policy to select relevant facts extracted from the corpus, based on the context of the reasoning process and the corpus.
 
-- Take-away message:
-  - We use the text corpus information accompanied with the KG to extract and add potential useful ***currently nonexistent*** edges
-  - By examining the result of the new edges on KG, we give rewards to our ***Fact Extractor***.
+![image-20181020190951048](https://github.com/shanzhenren/GraphPath/blob/master/README.assets/image-20181020190951048.png)
+
 
 ## Building and Running
 
@@ -214,7 +212,7 @@ We conducted tests on different levels of fractions of the original knowledge gr
 @article{fu2019collaborative,
   title={Collaborative Policy Learning for Open Knowledge Graph Reasoning},
   author={Fu, Cong and Chen, Tong and Qu, Meng and Jin, Woojeong and Ren, Xiang},
-  journal={arXiv preprint arXiv:1909.00230},
+  journal={EMNLP},
   year={2019}
 }
 ```
