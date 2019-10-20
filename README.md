@@ -1,6 +1,6 @@
 # CPL: Collaborative Policy Learning
 
-PyTorch implementation of EMNLP 2019 paper ***[Collaborative Policy Learning for Open Knowledge Graph Reasoning](https://arxiv.org/abs/1909.00230)***.
+TensorFlow implementation of EMNLP 2019 paper ***[Collaborative Policy Learning for Open Knowledge Graph Reasoning](https://arxiv.org/abs/1909.00230)***. Moving to PyTorch.
 
 Table of Contents
 =================
